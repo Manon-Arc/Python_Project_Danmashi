@@ -1,15 +1,17 @@
 from __future__ import annotations
-from dice import Dice
+from classes.dice import Dice 
 
 class Character:
     
-    def __init__(self, name:str, max_health:int, attack:int, defense:int, dice) -> None:
+    def __init__(self, name:str, max_health:int, attack:int, attack_type: int, attack_special: int, defense:int, dice) -> None:
         self._name = name
         self._max_health = max_health
         self._current_health = max_health
         self._attack_value = attack
         self._defense_value = defense
         self._dice = dice
+        self._attack_type_value = attack_type
+        self._attack_special_value = attack_special
         
     def __str__(self) -> str:
         return f"I'm {self._name} the character with attack : {self._attack_value} and defense : {self._defense_value}"
@@ -31,8 +33,14 @@ class Character:
         healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
         print(healthbar)
         
-    def compute_damages(self, roll, target):
-        return self._attack_value + roll
+    def compute_damages(self, roll):
+        return self._attack_value 
+    
+    def compute_damages_type(self, roll):
+        return self._attack_type_value
+    
+    def compute_damages_special(self, roll):
+        return self._attack_special_value
 
     def attack(self, target: Character):
         if not self.is_alive():
@@ -41,6 +49,22 @@ class Character:
         damages = self.compute_damages(roll, target)
         print(f"⚔️ {self._name} attack {target.get_name()} with {damages} damages in your face ! (attack: {self._attack_value} + roll: {roll})")
         target.defense(damages, self)
+        
+    def attack_type(self, target: Character):
+        if not self.is_alive():
+            return
+        roll = self._dice.roll()
+        damages_type = self.compute_damages_type(roll, target)
+        print(f"⚔️ {self._name} attack {target.get_name()} with {damages_type} damages in your face ! (attack: {self._attack_type_value} + roll: {roll})")
+        target.defense(damages_type, self)
+        
+    def attack_special(self, target: Character):
+        if not self.is_alive():
+            return
+        roll = self._dice.roll()
+        damages_special = self.compute_damages_special(roll, target)
+        print(f"⚔️ {self._name} attack {target.get_name()} with {damages_special} damages in your face ! (attack: {self._attack_special_value} + roll: {roll})")
+        target.defense(damages_special, self)
     
     def compute_wounds(self, damages, roll, attacker):
         return damages - self._defense_value - roll
@@ -54,36 +78,22 @@ class Character:
     def regenerate(self):
         self._current_health = self._max_health
 
-class Warrior(Character):   
-    def compute_damages(self, roll, target):
-        print("🪓 Bonus: Axe in your face (+3 attack)")
-        return super().compute_damages(roll, target) + 3
-
-class Mage(Character):
-    def compute_wounds(self, damages, roll, attacker):
-        print("🧙 Bonus: Magic armor (-3 wounds)")
-        return super().compute_wounds(damages, roll, attacker) - 3
-
-class Thief(Character):
-    def compute_damages(self, roll, target: Character):
-        print(f"🔪 Bonus: Sneacky attack (ignore defense: + {target._defense_value} bonus)")
-        return super().compute_damages(roll, target) + target._defense_value()
-
 if __name__ == "__main__":
     a_dice = Dice(6)
+    print("lul")
 
-    character1 = Warrior("Gerard", 20, 8, 3, Dice(6))
-    character2 = Mage("Lisa", 20, 8, 3, Dice(6))
-    print(character1)
-    print("---------------------------")
-    print(character2)
-    print("---------------------------")
-    
-    while(character1.is_alive() and character2.is_alive()):
-        character1.attack(character2)
-        print("---------------------------")
-        print("\n")
-        character2.attack(character1)
-        print("---------------------------")
-        print("\n")
+#    character1 = Warrior("Gerard", 20, 8, 3, Dice(6))
+#    character2 = Mage("Lisa", 20, 8, 3, Dice(6))
+#    print(character1)
+#    print("---------------------------")
+#    print(character2)
+#    print("---------------------------")
+#    
+#    while(character1.is_alive() and character2.is_alive()):
+#        character1.attack(character2)
+#        print("---------------------------")
+#        print("\n")
+#        character2.attack(character1)
+#        print("---------------------------")
+#        print("\n")
 

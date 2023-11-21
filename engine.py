@@ -1,12 +1,12 @@
-from character import Warrior, Mage, Thief, Character
-from dice import Dice
+from classes.character import Warrior, Mage, Assassin, Character
+from classes.dice import Dice
 
 import random
 
 def main():
-    warrior = Warrior("James", 20, 8, 3, Dice(6))
+    warrior = Warrior("James", 20, 8, Dice(6))
     mage = Mage("Elisa", 20, 8, 3, Dice(6))
-    thief = Thief("Bastien", 20, 8, 3, Dice(6))
+    thief = Assassin("Bastien", 20, 8, 3, Dice(6))
     
     cars: list[Character] = [warrior, mage, thief]
     stats = {}
