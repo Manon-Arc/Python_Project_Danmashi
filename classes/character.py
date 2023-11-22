@@ -3,15 +3,15 @@ from classes.dice import Dice
 
 class Character:
     
-    def __init__(self, name:str, max_health:int, attack:int, attack_type: int, attack_special: int, defense:int, dice) -> None:
+    def __init__(self, name:str, classe:str) -> None:
         self._name = name
-        self._max_health = max_health
-        self._current_health = max_health
-        self._attack_value = attack
-        self._defense_value = defense
-        self._dice = dice
-        self._attack_type_value = attack_type
-        self._attack_special_value = attack_special
+        self.classe = classe
+        self._max_health = 0
+        self._current_health = self._max_health
+        self._attack_value = 0
+        self._defense_value = 0
+        self._attack_type_value = 0
+        self._attack_special_value = 0
         
     def __str__(self) -> str:
         return f"I'm {self._name} the character with attack : {self._attack_value} and defense : {self._defense_value}"
@@ -33,7 +33,7 @@ class Character:
         healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
         print(healthbar)
         
-    def compute_damages(self, roll):
+    def compute_damages(self, roll, target):
         return self._attack_value 
     
     def compute_damages_type(self, roll):

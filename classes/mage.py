@@ -2,10 +2,10 @@ from character import Character
 from dice import Dice
 
 class Mage(Character):
-    def __init__(self, name, max_health, attack, attack_type, attaque_special, defense, dice):
-        super().__init__(name, defense, max_health, attack, attack_type, attaque_special, dice)
+    def __init__(self, name:str) -> None:
+        super().__init__(name, "Mage")
         self._max_health = 50
-        self._health = max_health
+        self._health = self._max_health
         self._attack_value = 6
         self._attack_type_value = 10
         self._defense_value = 3
