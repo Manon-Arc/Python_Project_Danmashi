@@ -2,14 +2,15 @@ from floor import Floor
 
 class Dungeon:
     def __init__(self):
-        self.joueur = Joueur("NomDuJoueur")
-        self.floors = [Floor(niveau) for niveau in range(1, 6)]  # Exemple : 5 niveaux de floors
+        self.floors = []
 
-    def passer_au_niveau_suivant(self):
-            if self.joueur.points_de_vie > 0:
-                print("Bravo ! Vous avez vaincu les monstres de ce niveau.")
-                self.joueur.niveau += 1
-                print(f"Vous passez au niveau {self.joueur.niveau}.")
-            else:
-                print("Game Over. Vous avez été vaincu.")
-                # Vous pourriez également réinitialiser le jeu ou afficher un écran de fin.
+    def generate_floors(self):
+    
+        floor_configurations = [
+            [("Goblini", 3)],
+            [("Wolfor", 1)],
+            [("Goblini", 1), ("Wolfor", 1)]
+        ]
+
+        for i, monsters_info in enumerate(floor_configurations, start=1):
+            self.floors.append(Floor(i, monsters_info))

@@ -8,6 +8,14 @@ class Mob:
         self._current_health = max_health
         self._attack_value = attack
         self._defense_value = defense
+        
+    def show_healthbar(self):
+        missing_hp = self._max_health - self._current_health
+        healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
+        print(healthbar)
+    
+    def is_alive(self) -> bool:
+        return self._current_health > 0
 
 
 class Goblini(Mob):

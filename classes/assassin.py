@@ -13,6 +13,6 @@ class Assassin(Character):
         self._dice = Dice(4)
     
     def compute_damages(self, roll, target):
-        basic_attack = self.attack - 3
+        basic_attack = self._attack_value - 3
         print(f"{self._name} lancement des hachettes des ombres sur {target.get_name()} ")
         return super().compute_damages(roll, target)

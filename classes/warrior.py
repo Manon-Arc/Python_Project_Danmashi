@@ -21,7 +21,6 @@ class Warrior(Character):
         self._attack_value += self._attack_type_value
         return self._attack_value
     
-    
     def compute_damages_special(self, roll, target):
         if self._current_health <= 0.3 * self._max_health:
             return 1.2 * self._attack_value 

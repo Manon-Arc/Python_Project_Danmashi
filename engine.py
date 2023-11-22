@@ -1,14 +1,14 @@
-from classes.character import Warrior, Mage, Assassin, Character
-from classes.dice import Dice
+from classes.character import Character
+from classes.warrior import Warrior
+from classes.mage import Mage
 
 import random
 
 def main():
-    warrior = Warrior("James", 20, 8, Dice(6))
-    mage = Mage("Elisa", 20, 8, 3, Dice(6))
-    thief = Assassin("Bastien", 20, 8, 3, Dice(6))
+    warrior = Warrior("James")
+    mage = Mage("Coco")
     
-    cars: list[Character] = [warrior, mage, thief]
+    cars: list[Character] = [warrior, mage]
     stats = {}
     
     char1 = random.choice(cars)
