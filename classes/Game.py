@@ -21,6 +21,9 @@ class Game:
             print(f"\n======= Étage {i + 1} =======")
             self.play_floor(floor)
             
+        if keyboard.is_pressed('s'):
+            pygame.mixer.music.stop()
+            
         print("\nFélicitations ! Vous avez terminé le donjon.")
         
     def create_player(self):
@@ -62,10 +65,6 @@ def jouer_musique():
     pygame.mixer.init()
     pygame.mixer.music.load("twilite.mp3")
     pygame.mixer.music.play()
-    while True:
-        if keyboard.is_pressed('s'):
-            pygame.mixer.music.stop()
-            break
     
 game = Game()
 game.start_game()
