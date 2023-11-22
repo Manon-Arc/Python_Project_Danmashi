@@ -8,15 +8,26 @@ class Warrior(Character):
         self._max_health = 50
         self._health = self._max_health
         self._attack_value = 6
-        self._attack_type_value = 10
+        self._attack_type_value = 3
         self._defense_value = 3
         self._dice = Dice(4)
 
     def compute_damages(self, roll, target):
-        print(f"🪓 {self._name} lance l'attaque déferlement sur {target.get_name()}.")
+        print(f" {self._name} lance l'attaque déferlement sur {target.get_name()}.")
         return super().compute_damages(roll, target) + roll
     
     def compute_damages_type(self, roll, target):
         print(f" {self._name} lance le sort maîtrise de soi...")
-        return super().compute_damages_type(roll, target) 
+        self._attack_value += self._attack_type_value
+        return self._attack_value
+    
+    
+    def compute_damages_special(self, roll, target):
+        if self._current_health <= 0.3 * self._max_health:
+            return 1.2 * self._attack_value 
+        elif self._current_health <= 0.15 * self._max_health:
+            return 1.3 * self._attack_value  
+        else:
+            return self._attack_value
+
     
