@@ -11,6 +11,9 @@ class Assassin(Character):
         self._attack_type_value = 10
         self._defense_value = 3
         self._dice = Dice(4)
+        
+    def __str__(self) -> str:
+        return f"Super ! Bienvenue {self._name} l'assassin 🥷 prépare toi à combattre"
     
     def compute_damages(self, roll, target):
         basic_attack = self._attack_value - 3

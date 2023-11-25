@@ -12,6 +12,9 @@ class Warrior(Character):
         self._defense_value = 3
         self._dice = Dice(4)
 
+    def __str__(self) -> str:
+        return f"Super ! Bienvenue {self._name} le guerrier 🤺 prépare toi à combattre"
+    
     def compute_damages(self, roll, target):
         print(f" {self._name} lance l'attaque déferlement sur {target.get_name()}.")
         return super().compute_damages(roll, target) + roll
