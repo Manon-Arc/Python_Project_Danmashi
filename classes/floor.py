@@ -1,4 +1,4 @@
-from classes.mob import Goblini, Wolfor
+from mob import Goblini, Wolfor
 
 class Floor:
     def __init__(self, level, monsters_info):

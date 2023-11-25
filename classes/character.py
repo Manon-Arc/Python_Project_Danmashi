@@ -1,8 +1,7 @@
 from __future__ import annotations
-from classes.dice import Dice 
+from dice import Dice 
 
 class Character:
-    
     def __init__(self, name:str, classe:str) -> None:
         self._name = name
         self.classe = classe
@@ -96,4 +95,3 @@ if __name__ == "__main__":
 #        character2.attack(character1)
 #        print("---------------------------")
 #        print("\n")
-

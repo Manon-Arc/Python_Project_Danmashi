@@ -1,12 +1,19 @@
 import pygame
 import keyboard
-from classes.mob import Goblini, Wolfor, Basilisc, Animal_trainer, Hydre
-from classes.dungeon import Dungeon
-from classes.warrior import Warrior
-from classes.mage import Mage
-from classes.assassin import Assassin
+from character import Character
+from dungeon import Dungeon
+from warrior import Warrior
+from mage import Mage
+from assassin import Assassin
+from mob import Goblini, Wolfor, Basilisc, Animal_trainer, Hydre
 
 class Game:
+    playerClasseAllow = [#penser à bien mettre en minuscule les clés
+        "Mage",
+        "Assassin",
+        "Warrior"
+        ]
+    
     def __init__(self):
         self.dungeon = Dungeon()
         self.player = None
@@ -14,28 +21,29 @@ class Game:
     def start_game(self):
         print("Bienvenue dans le jeu !")
         self.create_player()
-        jouer_musique()
         self.dungeon.generate_floors()
 
         for i, floor in enumerate(self.dungeon.floors):
             print(f"\n======= Étage {i + 1} =======")
             self.play_floor(floor)
             
-        if keyboard.is_pressed('s'):
-            pygame.mixer.music.stop()
-            
         print("\nFélicitations ! Vous avez terminé le donjon.")
         
     def create_player(self):
         player_name = input("Entrez le nom de votre personnage : ")
-        player_class = input("Choisissez votre classe (Guerrier, Mage, Assassin) : ")
-
-        if player_class.lower() == "guerrier":
-            self.player = Warrior(player_name, player_class)
-        if player_class.lower() == "mage":
-            self.player = Mage(player_name, player_class)
-        if player_class.lower() == "assassin":
-            self.player = Assassin(player_name, player_class)
+        player_class = ""
+        while player_class == "":
+            player_class = input("Choisissez votre classe (Guerrier, Mage, Assassin) : ").capitalize()
+            if player_class in self.playerClasseAllow:
+                self.player = eval(f"{player_class}('{player_name}')")
+            else:
+                print("Classe invalide. Veuillez choisir parmi :", end=" ") 
+                for index,classe in enumerate(self.playerClasseAllow):
+                    if index < len(self.playerClasseAllow)-1:
+                        print(classe, end=", ")
+                    else:
+                        print(classe)
+                player_class = ""
 
     def play_floor(self, floor):
         print(f"Vous êtes à l'étage {floor.level}. Préparez-vous à combattre !")
