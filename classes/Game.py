@@ -131,5 +131,3 @@ def jouer_musique():
     pygame.mixer.music.load("twilite.mp3")
     pygame.mixer.music.play()
     
-game = Game()
-game.start_game()
