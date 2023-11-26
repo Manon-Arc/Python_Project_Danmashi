@@ -2,6 +2,10 @@ from character import Character
 from dice import Dice
 
 class Mage(Character):
+    playerMove = [
+        "Attack",
+        "Attack spe"
+        ]
     
     def __init__(self, name:str) -> None:
         super().__init__(name, "Mage")
@@ -13,7 +17,7 @@ class Mage(Character):
         self._dice = Dice(4)
         
     def __str__(self) -> str:
-        return f"Super ! Bienvenue {self._name} le mage 🧙 prépare toi à combattre"
+        return f"Super ! Bienvenue {self._name} le mage 🧙"
 
     def compute_damages(self, roll, target):
         print(f"🪓 {self._name} lance l'attaque déferlement sur {target.get_name()}.")

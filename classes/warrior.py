@@ -2,7 +2,11 @@ from character import Character
 from dice import Dice
 
 class Warrior(Character): 
-
+    playerMove = [
+        "Déferlement",
+        "Maîtrise de soi"
+        ]
+    
     def __init__(self, name:str) -> None:
         super().__init__(name, "Warrior")
         self._max_health = 50
@@ -13,7 +17,7 @@ class Warrior(Character):
         self._dice = Dice(4)
 
     def __str__(self) -> str:
-        return f"Super ! Bienvenue {self._name} le guerrier 🤺 prépare toi à combattre"
+        return f"Super ! Bienvenue {self._name} le guerrier 🤺"
     
     def compute_damages(self, roll, target):
         print(f" {self._name} lance l'attaque déferlement sur {target.get_name()}.")

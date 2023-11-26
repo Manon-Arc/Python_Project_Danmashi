@@ -1,54 +1,47 @@
 from __future__ import annotations
+from character import Character
+from dice import Dice
 
-class Mob:
     
-    def __init__(self, name:str, max_health = 10, attack = 3, defense = 0) -> None:
-        self._name = name
-        self._max_health = max_health
-        self._current_health = max_health
-        self._attack_value = attack
-        self._defense_value = defense
-        
-    def show_healthbar(self):
-        missing_hp = self._max_health - self._current_health
-        healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
-        print(healthbar)
-    
-    def is_alive(self) -> bool:
-        return self._current_health > 0
+class Goblini(Character):
+    def __init__(self, name: str="Goblini") -> None:
+        super().__init__(name, "Mob")
+        self._max_health = 10
+        self._current_health = self._max_health
+        self._attack_value = 3
+        self._dice = Dice(6)
 
-
-class Goblini(Mob):
-    def __init__(self, name: str, max_health: int, attack: int, defense: int) -> None:
-        super().__init__(name, max_health, attack, defense)
-        self._name = "Goblini"
-
-class Wolfor(Mob):
-    def __init__(self, name: str, max_health: int, attack: int, defense: int) -> None:
-        super().__init__(name, max_health, attack, defense)
-        self._name = "Wolfor"
+class Wolfor(Character):
+    def __init__(self, name: str="Wolfer") -> None:
+        super().__init__(name, "Mob")
         self._max_health = 20
+        self._current_health = self._max_health
         self._attack_value = 4
+        self._dice = Dice(6)
 
-class Basilisc(Mob):
-    def __init__(self, name: str, max_health: int, attack: int, defense: int) -> None:
-        super().__init__(name, max_health, attack, defense)
-        self._name = "Basilisc"
+class Basilisc(Character):
+    def __init__(self, name: str="Basilisc") -> None:
+        super().__init__(name, "Mob")
         self._max_health = 25
+        self._current_health = self._max_health
         self._attack_value = 6
         self._defense_value = 2
+        self._dice = Dice(6)
 
-class Animal_trainer(Mob):
-    def __init__(self, name: str, max_health: int, attack: int, defense: int) -> None:
-        super().__init__(name, max_health, attack, defense)
-        self._name = "Animal_trainer"
+class Animal_trainer(Character):
+    def __init__(self, name: str="Animal trainer") -> None:
+        super().__init__(name, "Mob")
         self._max_health = 12
+        self._current_health = self._max_health
         self._attack_value = 4
+        self._dice = Dice(6)
 
-class Hydre(Mob):
-    def __init__(self, name: str, max_health: int, attack: int, defense: int) -> None:
-        super().__init__(name, max_health, attack, defense)
-        self._name = "Hydre"
+
+class Hydre(Character):
+    def __init__(self, name: str="Hydre") -> None:
+        super().__init__(name, "Mob")
         self._max_health = 30
+        self._current_health = self._max_health
         self._attack_value = 8
         self._defense_value = 3
+        self._dice = Dice(6)

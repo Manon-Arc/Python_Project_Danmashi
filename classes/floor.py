@@ -10,14 +10,14 @@ class Floor:
         for monster_type, num_monsters in monsters_info:
            
             if monster_type.lower() == "goblini":
-                generated_monsters.extend([Goblini(f"Guerrier-{i}", self.level) for i in range(1, num_monsters + 1)])
+                generated_monsters.extend([Goblini(f"Goblini-{i}") for i in range(1, num_monsters + 1)])
                 
             elif monster_type.lower() == "wolfor":
-                generated_monsters.extend([Wolfor(f"Mage-{i}", self.level) for i in range(1, num_monsters + 1)])
+                generated_monsters.extend([Wolfor(f"Wolfor-{i}") for i in range(1, num_monsters + 1)])
                 
             else:
-                print(f"Type de monstre non reconnu. Utilisation du Guerrier par défaut.")
-                generated_monsters.extend([Goblini(f"Guerrier-{i}", self.level) for i in range(1, num_monsters + 1)])
+                print(f"Type de monstre non reconnu. Utilisation du Goblini par défaut.")
+                generated_monsters.extend([Goblini(f"Goblini-{i}") for i in range(1, num_monsters + 1)])
                 
         return generated_monsters
 

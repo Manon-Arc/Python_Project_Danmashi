@@ -4,13 +4,14 @@ from dice import Dice
 class Character:
     def __init__(self, name:str, classe:str) -> None:
         self._name = name
-        self.classe = classe
+        self._classe = classe
         self._max_health = 0
         self._current_health = self._max_health
         self._attack_value = 0
         self._defense_value = 0
         self._attack_type_value = 0
         self._attack_special_value = 0
+        self._dice = Dice(6)
         
     def __str__(self) -> str:
         return f"I'm {self._name} the character with attack : {self._attack_value} and defense : {self._defense_value}"
@@ -76,22 +77,3 @@ class Character:
 
     def regenerate(self):
         self._current_health = self._max_health
-
-if __name__ == "__main__":
-    a_dice = Dice(6)
-    print("lul")
-
-#    character1 = Warrior("Gerard", 20, 8, 3, Dice(6))
-#    character2 = Mage("Lisa", 20, 8, 3, Dice(6))
-#    print(character1)
-#    print("---------------------------")
-#    print(character2)
-#    print("---------------------------")
-#    
-#    while(character1.is_alive() and character2.is_alive()):
-#        character1.attack(character2)
-#        print("---------------------------")
-#        print("\n")
-#        character2.attack(character1)
-#        print("---------------------------")
-#        print("\n")

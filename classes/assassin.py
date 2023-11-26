@@ -2,6 +2,10 @@ from character import Character
 from dice import Dice
 
 class Assassin(Character):
+    playerMove = [
+        "Attack",
+        "Attaque spe"
+        ]
     
     def __init__(self, name: str) -> None:
         super().__init__(name, "Assassin")
@@ -13,7 +17,7 @@ class Assassin(Character):
         self._dice = Dice(4)
         
     def __str__(self) -> str:
-        return f"Super ! Bienvenue {self._name} l'assassin 🥷 prépare toi à combattre"
+        return f"Super ! Bienvenue {self._name} l'assassin 🥷"
     
     def compute_damages(self, roll, target):
         basic_attack = self._attack_value - 3
