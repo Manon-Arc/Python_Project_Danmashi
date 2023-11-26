@@ -6,6 +6,7 @@ from warrior import Warrior
 from mage import Mage
 from assassin import Assassin
 from mob import Goblini, Wolfor, Basilisc, Animal_trainer, Hydre
+import os
 
 class Game:
     playerClasseAllow = [
@@ -83,28 +84,21 @@ class Game:
         print(f"\nVous avez vaincu tous les monstres de l'étage {floor.level}. Bravo !")
         
     def show_class_menu(self, list):
+        os.system('cls||clear')
         for i, option in enumerate(list):
             print("{1} {0}. {2} {3}".format(i + 1, ">" if self.selected == i else " ", option, "<" if self.selected == i else " "))
             
     def up(self, list):
-        if self.player:
-            return
-        self.selected -= 1
-        if self.selected < 0:
-            self.selected = len(list) - 1
+        if self.selected > 0:
+            self.selected -= 1
         self.show_class_menu(list)
         
     def down(self, list):
-        if self.player:
-            return
-        self.selected += 1
-        if self.selected >= len(list):
-            self.selected = 0
+        if self.selected < len(list) - 1:
+            self.selected += 1
         self.show_class_menu(list)
         
     def get_selected_choice(self, list):
-        if self.player:
-            return
         return list[self.selected]  
 
 def jouer_musique():
