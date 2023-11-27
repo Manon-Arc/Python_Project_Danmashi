@@ -71,7 +71,6 @@ class Game:
     def play_floor(self, floor):
         for monster in floor.monsters:
             while monster.is_alive() and self.player.is_alive():
-                self.show_menu(self.player.playerMove)
                 keyboard.clear_all_hotkeys()
                 keyboard.add_hotkey('up', lambda: self.up(self.player.playerMove))
                 keyboard.add_hotkey('down', lambda: self.down(self.player.playerMove))
@@ -102,7 +101,6 @@ class Game:
 
     def process_player_action(self, action, monster):
         if action == 0:
-            print("in attack")
             self.player.attack(monster)
         elif action == 1:
             self.player.attack_type(monster)

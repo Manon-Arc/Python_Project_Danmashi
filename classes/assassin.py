@@ -25,13 +25,13 @@ class Assassin(Character):
         print(f"{self._name} donne un coup de dague sur {target.get_name()} \n")
         return super().compute_damages(roll, target)
 
-    # def compute_damages_type(self, roll, target):
-    #     type_attack_damages = self._attack_value
-    #     rand_num = randint(4, 6)
-    #     print(f"{self._name} lance {rand_num} hachettes des ombres sur {target.get_name()}\n")
-    #     for i in range(2, rand_num):
-    #         type_attack_damages += 3
-    #     return type_attack_damages
+    def compute_damages_type(self, roll, target):
+        type_attack_damages = self._attack_value
+        rand_num = randint(2, 6)
+        print(f"{self._name} lance {rand_num} hachettes des ombres sur {target.get_name()}\n")
+        for i in range(2, rand_num):
+            type_attack_damages += 3
+        return type_attack_damages
     
     def compute_damages_special(self, target):
         print(f"{self._name} utilise son écran de fumée 🌫️ qui rend confus {target.get_name()} et le fait rater tout ces coups\n")
