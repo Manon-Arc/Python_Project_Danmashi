@@ -1,4 +1,4 @@
-from floor import Floor
+from .floor import Floor
 
 class Dungeon:
     def __init__(self):

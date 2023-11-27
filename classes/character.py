@@ -1,18 +1,26 @@
 from __future__ import annotations
-from dice import Dice 
+from .dice import Dice
 
 class Character:
-    def __init__(self, name:str, classe:str) -> None:
+
+    def __init__(self, name:str, classe:str, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice) -> None:
         self._name = name
         self._classe = classe
-        self._max_health = 0
+        self._max_health = max_health
         self._current_health = self._max_health
-        self._attack_value = 0
-        self._defense_value = 0
-        self._attack_type_value = 0
-        self._attack_special_value = 0
-        self._dice = Dice(6)
+        self._attack_value = attack_value
+        self._defense_value = defense_value
+        self._attack_type_value = attack_type_value
+        self._attack_special_value = attack_special_value
+        self._touchable = touchable
+        self._dice = dice
         
+    @staticmethod
+    def create_default_character(name, template="default") -> Character | None:
+        if (template=="default"):
+            return Character(name=name, classe="Character", max_health=0, attack_value=0, defense_value=0, attack_type_value=0, attack_special_value=0, touchable=0, dice=Dice(6))
+        return None  
+     
     def __str__(self) -> str:
         return f"I'm {self._name} the character with attack : {self._attack_value} and defense : {self._defense_value}"
     
@@ -21,6 +29,9 @@ class Character:
     
     def is_alive(self) -> bool:
         return self._current_health > 0
+    
+    def is_touchable(self) -> bool:
+        return self._touchable == 0
     
     def decrease_health(self, amount):
         if (self._current_health - amount) < 0 :
@@ -47,8 +58,11 @@ class Character:
             return
         roll = self._dice.roll()
         damages = self.compute_damages(roll, target)
-        print(f"⚔️ {self._name} attack {target.get_name()} with {damages} damages in your face ! (attack: {self._attack_value} + roll: {roll})")
-        target.defense(damages, self)
+        if self.is_touchable():
+            print(f"⚔️ {self._name} attack {target.get_name()} with {damages} damages in your face ! (attack: {self._attack_value} + roll: {roll})")
+            target.defense(damages, self)
+        else:
+            print(f"{self._name} à réussi a esquiver l'attaque de peu 🤸")
         
     def attack_type(self, target: Character):
         if not self.is_alive():
@@ -69,6 +83,9 @@ class Character:
     def compute_wounds(self, damages, roll, attacker):
         return damages - self._defense_value - roll
     
+    def compute_protego(self, damages, roll, attacker):
+        return damages == 0
+    
     def defense(self, damages, attacker):
         roll = self._dice.roll()
         wounds = self.compute_wounds(damages, roll, attacker)
@@ -77,3 +94,6 @@ class Character:
 
     def regenerate(self):
         self._current_health = self._max_health
+
+    def add_special(self):
+        return

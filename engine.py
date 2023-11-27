@@ -1,11 +1,7 @@
-from classes.character import Character
-from classes.dungeon import Dungeon
-from classes.warrior import Warrior
-from classes.mage import Mage
-from classes.assassin import Assassin
-from classes.mob import Goblini, Wolfor, Basilisc, Animal_trainer, Hydre
 from classes.game import Game
 
+from classes.mage import Mage
+from classes.character import Character
 
 def main():
     #warrior = Warrior("James")
@@ -45,5 +41,13 @@ def main():
     game = Game()
     game.start_game()
        
+def test():
+    char1 = Mage.create_default_character("Michel")
+    print(char1)
+    print(char1.playerMove)
+    char1.add_special()
+    print(char1.playerMove)
+       
 if __name__ == "__main__":
     main()
+    # test()

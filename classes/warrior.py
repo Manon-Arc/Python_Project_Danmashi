@@ -1,20 +1,21 @@
-from character import Character
-from dice import Dice
+from __future__ import annotations
+from .character import Character
+from .dice import Dice
 
 class Warrior(Character): 
     playerMove = [
         "Déferlement",
         "Maîtrise de soi"
         ]
-    
-    def __init__(self, name:str) -> None:
-        super().__init__(name, "Warrior")
-        self._max_health = 50
-        self._health = self._max_health
-        self._attack_value = 6
-        self._attack_type_value = 3
-        self._defense_value = 3
-        self._dice = Dice(4)
+        
+    def __init__(self, name: str, classe: str, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice) -> None:
+        super().__init__(name, classe, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice)
+      
+    @staticmethod    
+    def create_default_character(name, template="default") -> Warrior | None:
+        if (template=="default"):
+            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=6, defense_value=3, attack_type_value=3, attack_special_value=9, touchable=0, dice=Dice(4))
+        return None
 
     def __str__(self) -> str:
         return f"Super ! Bienvenue {self._name} le guerrier 🤺"
@@ -35,5 +36,6 @@ class Warrior(Character):
             return 1.3 * self._attack_value  
         else:
             return self._attack_value
-
-    
+        
+    def add_special(self):
+        self.playerMove.append("Colère du Berserkeur")
