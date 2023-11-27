@@ -32,17 +32,6 @@ class Character:
     
     def is_touchable(self) -> bool:
         return self._touchable == 0
-    
-    def decrease_health(self, amount):
-        if (self._current_health - amount) < 0 :
-            amount = self._current_health
-        self._current_health -= amount
-        self.show_healthbar()
-        
-    def show_healthbar(self):
-        missing_hp = self._max_health - self._current_health
-        healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
-        print(healthbar)
         
     def compute_damages(self, roll, target):
         return self._attack_value 
@@ -62,7 +51,7 @@ class Character:
             print(f"⚔️ {self._name} attack {target.get_name()} with {damages} damages in your face ! (attack: {self._attack_value} + roll: {roll})")
             target.defense(damages, self)
         else:
-            print(f"{self._name} à réussi a esquiver l'attaque de peu 🤸")
+            print(f"{self._name} à encaissé l'attaque avec brio 🛡️")
         
     def attack_type(self, target: Character):
         if not self.is_alive():
@@ -80,17 +69,26 @@ class Character:
         print(f"⚔️ {self._name} attack {target.get_name()} with {damages_special} damages in your face ! (attack: {self._attack_special_value} + roll: {roll})")
         target.defense(damages_special, self)
     
-    def compute_wounds(self, damages, roll, attacker):
-        return damages - self._defense_value - roll
-    
-    def compute_protego(self, damages, roll, attacker):
-        return damages == 0
+    def compute_wounds(self, damages, roll):
+        return damages - self._defense_value 
     
     def defense(self, damages, attacker):
         roll = self._dice.roll()
-        wounds = self.compute_wounds(damages, roll, attacker)
+        wounds = self.compute_wounds(damages, roll)
         print(f"🛡️ {self._name} take {wounds} wounds from {attacker.get_name()} in his face ! (damages: {damages} - defense: {self._defense_value} - roll: {roll})")
         self.decrease_health(wounds)
+        
+    def decrease_health(self, amount):
+
+        if (self._current_health - amount) < 0 :
+            amount = self._current_health
+        self._current_health -= amount
+        self.show_healthbar()
+        
+    def show_healthbar(self):
+        missing_hp = self._max_health - self._current_health
+        healthbar = f"[{'♥'* self._current_health}{'♡' * (missing_hp)}]{self._current_health}/{self._max_health} hp]"  
+        print(healthbar)
 
     def regenerate(self):
         self._current_health = self._max_health

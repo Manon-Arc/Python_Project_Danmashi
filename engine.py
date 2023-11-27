@@ -1,7 +1,6 @@
 from classes.game import Game
-
 from classes.mage import Mage
-from classes.character import Character
+from classes.assassin import Assassin
 
 def main():
     #warrior = Warrior("James")
@@ -42,12 +41,10 @@ def main():
     game.start_game()
        
 def test():
-    char1 = Mage.create_default_character("Michel")
-    print(char1)
-    print(char1.playerMove)
-    char1.add_special()
-    print(char1.playerMove)
+    mage1 = Mage.create_default_character("Mag")
+    assassin1 = Assassin.create_default_character("Assa")
+    mage1.attack(assassin1)
        
 if __name__ == "__main__":
     main()
-    # test()
+    #test()

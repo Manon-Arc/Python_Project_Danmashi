@@ -12,11 +12,11 @@ class Game:
     playerClasseList = [
         "Mage",
         "Assassin",
-        "Warrior"
+        "Guerrier"
         ]
 
     playerClassAllows = {
-        "Warrior": Warrior.create_default_character,
+        "Guerrier": Warrior.create_default_character,
         "Mage" : Mage.create_default_character,
         "Assassin" : Assassin.create_default_character,
     }
@@ -84,7 +84,7 @@ class Game:
                 if monster.is_alive():
                     monster.attack(self.player)
                     
-                if self._touchable > 0:
+                if self.player._touchable > 0:
                     self.player.touchable -+ 1
                     
                 print(f"\nÉtat actuel de {self.player.get_name()}:")
@@ -101,18 +101,23 @@ class Game:
         print(f"\nVous avez vaincu tous les monstres de l'étage {floor.level}. Bravo !")
 
     def process_player_action(self, action, monster):
-        if action == 1:
+        if action == 0:
+            print("in attack")
             self.player.attack(monster)
-        elif action == 2:
+        elif action == 1:
             self.player.attack_type(monster)
-        elif action == 3:
+        elif action == 2:
             self.player.attack_spe(monster)
     
     def show_menu(self, datas):
-        # os.system("clear||cls")
+        #os.system("clear||cls")
         for i, option in enumerate(datas):
             print("{1} {0}. {2} {3}".format(i + 1, ">" if self.selected == i else " ", option, "<" if self.selected == i else " "))
             
+    def clear_term(self, datas):
+        print('\r' + ' ' * len(str(datas)), end='', flush=True)
+        sleep(0.5)
+        
     def up(self, datas):
         if self.selected > 0:
             self.selected -= 1
