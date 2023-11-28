@@ -26,18 +26,19 @@ class Mage(Character):
 
     def compute_damages_type(self, roll, attacker):
         print(f" {self._name} se protège grâce à son sort Protego {attacker.get_name()}.\n")
-        self.is_touchable += 2
+        self._touchable += 2
+        return 0
     
 # def compute_damages_special(self, roll, target):
     #     print(f" {self._name} lance le sort Rayon cosmique sur {target.get_name()}.\n")
     #     self.is_touchable += 1
     #     return super().compute_damages_special(roll, target)
 
-    def compute_wounds(self, damages, roll, attacker):
-        if super().compute_wounds(damages, roll, attacker) - roll <= 0:
+    def compute_wounds(self, damages, roll):
+        if super().compute_wounds(damages, roll) - roll <= 0:
             return 0
         else :
-            return super().compute_wounds(damages, roll, attacker) - roll
+            return super().compute_wounds(damages, roll) - roll
     
     def add_special(self):
-        return self.playerMove.append("Rayon cosmique")
+        self.playerMove.append("Rayon cosmique")

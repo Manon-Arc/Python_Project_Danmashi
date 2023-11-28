@@ -4,7 +4,7 @@ from .dungeon import Dungeon
 from .warrior import Warrior
 from .mage import Mage
 from .assassin import Assassin
-import os
+#import os
 import pyfiglet
 from time import sleep
 
@@ -27,6 +27,7 @@ class Game:
         self.selected = 0
 
     def start_game(self):
+        self.play_music()
         print("\n"*2)
         print("Bienvenue sur le meilleur jeu de tout les temps, l'équipe 7 va vous présenter: \nAttention roulement de tambour...")
         print(pyfiglet.figlet_format("DANMASHI !!"))
@@ -34,6 +35,7 @@ class Game:
         self.dungeon.generate_floors()
 
         for i, floor in enumerate(self.dungeon.floors):
+            print(pyfiglet.figlet_format(f"\n=== Etage {i + 1} ==="))
             self.play_floor(floor)
 
         print(pyfiglet.figlet_format("Felicitations !"))    
@@ -57,11 +59,13 @@ class Game:
                 
     def create_player(self):
         player_name = input("Entrez le nom de votre personnage : ")
+        if player_name == "":
+            player_name = "player"
         print("Choississez votre classe :")
         self.show_menu(self.playerClasseList)
-        handle_up = keyboard.add_hotkey('up',lambda: self.up(self.playerClasseList))
-        handle_down = keyboard.add_hotkey('down',lambda: self.down(self.playerClasseList))
-        handle_enter = keyboard.add_hotkey('enter',lambda: self.get_selected_choice(self.playerClasseList))
+        keyboard.add_hotkey('up',lambda: self.up(self.playerClasseList))
+        keyboard.add_hotkey('down',lambda: self.down(self.playerClasseList))
+        keyboard.add_hotkey('enter',lambda: self.get_selected_choice(self.playerClasseList))
         keyboard.wait('enter')
         selected_choice = self.get_selected_choice(self.playerClasseList)
         self.player = self.playerClassAllows[selected_choice](player_name)
@@ -70,8 +74,11 @@ class Game:
 
     def play_floor(self, floor):
         for monster in floor.monsters:
+            print(f"\nUn monstre approche : \nC'est un {monster.get_name()} !")
+            print(monster.ascii_design)
             while monster.is_alive() and self.player.is_alive():
                 keyboard.clear_all_hotkeys()
+                self.show_menu(self.player.playerMove)
                 keyboard.add_hotkey('up', lambda: self.up(self.player.playerMove))
                 keyboard.add_hotkey('down', lambda: self.down(self.player.playerMove))
                 keyboard.add_hotkey('enter', lambda: self.get_selected_choice(self.player.playerMove))
@@ -82,9 +89,11 @@ class Game:
 
                 if monster.is_alive():
                     monster.attack(self.player)
+                else :
+                    print(f"{monster.get_name()} a été vaincu")
                     
                 if self.player._touchable > 0:
-                    self.player.touchable -+ 1
+                    self.player._touchable -= 1
                     
                 print(f"\nÉtat actuel de {self.player.get_name()}:")
                 self.player.show_healthbar()
@@ -98,6 +107,10 @@ class Game:
                 break
 
         print(f"\nVous avez vaincu tous les monstres de l'étage {floor.level}. Bravo !")
+        
+        if floor.level == 3:
+            self.player.add_special()
+            print(f"Vous avez débloqué une nouvelle compétence : {self.player.playerMove[len(self.player.playerMove)-1]} !")
 
     def process_player_action(self, action, monster):
         if action == 0:
@@ -132,8 +145,9 @@ class Game:
     def get_index_selected_choice(self, datas):
         return self.selected
     
-def jouer_musique():
-    pygame.mixer.init()
-    pygame.mixer.music.load("twilite.mp3")
-    pygame.mixer.music.play()
-    
+    def play_music(self):
+        pygame.mixer.init()
+        pygame.mixer.music.load("twilite.mp3")
+        pygame.mixer.music.play()
+        if keyboard.is_pressed('s'):
+            pygame.mixer.music.stop()

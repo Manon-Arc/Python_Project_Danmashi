@@ -9,7 +9,8 @@ class Dungeon:
         floor_configurations = [
             [("Goblini", 3)],
             [("Wolfor", 1)],
-            [("Goblini", 1), ("Wolfor", 1)]
+            [("Goblini", 1), ("Wolfor", 1)],
+            [("Basilisc", 1)]
         ]
 
         for i, monsters_info in enumerate(floor_configurations, start=1):
