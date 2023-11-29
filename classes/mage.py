@@ -21,18 +21,18 @@ class Mage(Character):
         return f"Super ! Bienvenue {self._name} le mage 🧙\n"
 
     def compute_damages(self, roll, target):
-        print(f" {self._name} lance l'attaque Boule de feu sur {target.get_name()}.\n")
+        print(f"{self._name} lance l'attaque Boule de feu !")
         return super().compute_damages(roll, target)
 
-    def compute_damages_type(self, roll, attacker):
-        print(f" {self._name} se protège grâce à son sort Protego {attacker.get_name()}.\n")
+    def compute_damages_type(self, roll, target):
+        print(f"{self._name} se protège grâce à son sort Protego\n")
         self._touchable += 2
         return 0
     
-# def compute_damages_special(self, roll, target):
-    #     print(f" {self._name} lance le sort Rayon cosmique sur {target.get_name()}.\n")
-    #     self.is_touchable += 1
-    #     return super().compute_damages_special(roll, target)
+    def compute_damages_special(self, roll, target):
+        print(f"{self._name} lance le sort Rayon cosmique mais sera blessé par le recul !\n")
+        self._current_health -= 5
+        return super().compute_damages_special(roll, target) + self._attack_special_value, False
 
     def compute_wounds(self, damages, roll):
         if super().compute_wounds(damages, roll) - roll <= 0:

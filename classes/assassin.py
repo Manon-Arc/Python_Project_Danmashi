@@ -22,20 +22,28 @@ class Assassin(Character):
         return f"Super ! Bienvenue {self._name} l'assassin 🥷\n"
     
     def compute_damages(self, roll, target):
-        print(f"{self._name} donne un coup de dague sur {target.get_name()} \n")
+        print(f"{self._name} donne un coup de dague !\n")
         return super().compute_damages(roll, target)
 
     def compute_damages_type(self, roll, target):
         type_attack_damages = self._attack_value
         rand_num = randint(2, 6)
-        print(f"{self._name} lance {rand_num} hachettes des ombres sur {target.get_name()}\n")
-        for i in range(2, rand_num):
+        print(f"{self._name} lance {rand_num} hachettes des ombres !\n")
+        for _ in range(2, rand_num):
             type_attack_damages += 3
         return type_attack_damages
     
-    def compute_damages_special(self, target):
-        print(f"{self._name} utilise son écran de fumée 🌫️ qui rend confus {target.get_name()} et le fait rater tout ces coups\n")
-        self._is_touchable += 2
+    def compute_damages_special(self, roll, target):
+        print(f"{self._name} utilise son écran de fumée 🌫️ qui rend confus {target.get_name()}\n")
+        self._touchable += 2
+        return 0, False
+    
+    def defense(self, damages, attacker):
+        if randint(1, 4) == 1:
+            print(f"{self._name} a esquivé l'attaque avec habilité")
+            self.decrease_health(0)
+        else:
+            return super().defense(damages, attacker)
             
     def add_special(self):
         self.playerMove.append("écran de fumée")

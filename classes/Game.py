@@ -4,9 +4,7 @@ from .dungeon import Dungeon
 from .warrior import Warrior
 from .mage import Mage
 from .assassin import Assassin
-#import os
 import pyfiglet
-from time import sleep
 
 class Game:
     playerClasseList = [
@@ -29,8 +27,9 @@ class Game:
     def start_game(self):
         self.play_music()
         print("\n"*2)
-        print("Bienvenue sur le meilleur jeu de tout les temps, l'équipe 7 va vous présenter: \nAttention roulement de tambour...")
-        print(pyfiglet.figlet_format("DANMASHI !!"))
+        print("Bienvenue sur...")
+        print(pyfiglet.figlet_format("DANMASHI !!\n"))
+        print("Un jeu d'aventure en CLI !\nPréparez-vous à descendre les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
         self.create_player()
         self.dungeon.generate_floors()
 
@@ -40,22 +39,6 @@ class Game:
 
         print(pyfiglet.figlet_format("Felicitations !"))    
         print("\nVous avez terminé le donjon.")
-        
-#    def create_player(self):
-#        player_name = input("Entrez le nom de votre personnage : ")
-#        player_class = ""
-#        while player_class == "":
-#            player_class = input("Choisissez votre classe (Guerrier, Mage, Assassin) : ").capitalize()
-#            if player_class in self.playerClasseAllow:
-#                self.player = eval(f"{player_class}('{player_name}')")
-#            else:
-#                print("Classe invalide. Veuillez choisir parmi :", end=" ") 
-#                for index,classe in enumerate(self.playerClasseAllow):
-#                    if index < len(self.playerClasseAllow)-1:
-#                        print(classe, end=", ")
-#                    else:
-#                        print(classe)
-#                player_class = ""
                 
     def create_player(self):
         player_name = input("Entrez le nom de votre personnage : ")
@@ -74,7 +57,7 @@ class Game:
 
     def play_floor(self, floor):
         for monster in floor.monsters:
-            print(f"\nUn monstre approche : \nC'est un {monster.get_name()} !")
+            print(f"\nUn monstre approche... \nC'est un {monster.get_name()} !")
             print(monster.ascii_design)
             while monster.is_alive() and self.player.is_alive():
                 keyboard.clear_all_hotkeys()
@@ -84,23 +67,30 @@ class Game:
                 keyboard.add_hotkey('enter', lambda: self.get_selected_choice(self.player.playerMove))
                 keyboard.wait('enter')
 
+                print("\n")
                 action = self.get_index_selected_choice(self.player.playerMove)
                 self.process_player_action(action, monster)
 
                 if monster.is_alive():
+                    print("\n")
                     monster.attack(self.player)
                 else :
                     print(f"{monster.get_name()} a été vaincu")
                     
                 if self.player._touchable > 0:
                     self.player._touchable -= 1
-                    
-                print(f"\nÉtat actuel de {self.player.get_name()}:")
-                self.player.show_healthbar()
-
-                print(f"État actuel de {monster.get_name()}:")
-                monster.show_healthbar()
-
+                
+                if self.player.is_alive():   
+                    print(f"\nÉtat actuel de {self.player.get_name()}:")
+                    self.player.show_healthbar()
+                
+                if monster.is_alive():
+                    print(f"État actuel de {monster.get_name()}:")
+                    monster.show_healthbar()
+                
+                print("\n----------------------------------------\n")
+                self.selected = 0
+                
             if not self.player.is_alive():
                 print(pyfiglet.figlet_format("GAME OVER"))
                 print("Vous avez été vaincu...")
@@ -118,16 +108,12 @@ class Game:
         elif action == 1:
             self.player.attack_type(monster)
         elif action == 2:
-            self.player.attack_spe(monster)
+            self.player.attack_special(monster)
     
     def show_menu(self, datas):
-        #os.system("clear||cls")
         for i, option in enumerate(datas):
-            print("{1} {0}. {2} {3}".format(i + 1, ">" if self.selected == i else " ", option, "<" if self.selected == i else " "))
-            
-    def clear_term(self, datas):
-        print('\r' + ' ' * len(str(datas)), end='', flush=True)
-        sleep(0.5)
+            selected_indicator = ">" if self.selected == i else " "
+            print(f"{selected_indicator} {i + 1}. {option}")
         
     def up(self, datas):
         if self.selected > 0:
