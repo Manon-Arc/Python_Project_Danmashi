@@ -20,20 +20,21 @@ class Game:
     }
     
     def __init__(self):
-        self.dungeon = Dungeon()
-        self.player = None
-        self.selected = 0
+        self._dungeon = Dungeon()
+        self._player = None
+        self._selected = 0
+        self._nbr_floor = 5
 
     def start_game(self):
         self.play_music()
         print("\n"*2)
         print("Bienvenue sur...")
         print(pyfiglet.figlet_format("DANMASHI !!\n"))
-        print("Un jeu d'aventure en CLI !\nPréparez-vous à descendre les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
+        print("Un jeu d'aventure en CLI !\nPréparez-vous à monter les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
         self.create_player()
-        self.dungeon.generate_floors()
+        self._dungeon.generate_floors(self._nbr_floor)
 
-        for i, floor in enumerate(self.dungeon.floors):
+        for i, floor in enumerate(self._dungeon._floors):
             print(pyfiglet.figlet_format(f"\n=== Etage {i + 1} ==="))
             self.play_floor(floor)
 
@@ -53,10 +54,11 @@ class Game:
         selected_choice = self.get_selected_choice(self.playerClasseList)
         self.player = self.playerClassAllows[selected_choice](player_name)
         self.selected = 0
+        print("\n")
         print(str(self.player))
 
     def play_floor(self, floor):
-        for monster in floor.monsters:
+        for monster in floor._monsters:
             print(f"\nUn monstre approche... \nC'est un {monster.get_name()} !")
             print(monster.ascii_design)
             while monster.is_alive() and self.player.is_alive():
@@ -79,6 +81,9 @@ class Game:
                     
                 if self.player._touchable > 0:
                     self.player._touchable -= 1
+                    
+                if monster._touchable > 0:
+                    monster._touchable -= 1
                 
                 if self.player.is_alive():   
                     print(f"\nÉtat actuel de {self.player.get_name()}:")
@@ -89,16 +94,16 @@ class Game:
                     monster.show_healthbar()
                 
                 print("\n----------------------------------------\n")
-                self.selected = 0
+                self._selected = 0
                 
             if not self.player.is_alive():
                 print(pyfiglet.figlet_format("GAME OVER"))
                 print("Vous avez été vaincu...")
                 break
 
-        print(f"\nVous avez vaincu tous les monstres de l'étage {floor.level}. Bravo !")
+        print(f"\nVous avez vaincu tous les monstres de l'étage {floor._level}. Bravo !")
         
-        if floor.level == 3:
+        if floor._level == 3:
             self.player.add_special()
             print(f"Vous avez débloqué une nouvelle compétence : {self.player.playerMove[len(self.player.playerMove)-1]} !")
 
@@ -112,24 +117,24 @@ class Game:
     
     def show_menu(self, datas):
         for i, option in enumerate(datas):
-            selected_indicator = ">" if self.selected == i else " "
+            selected_indicator = ">" if self._selected == i else " "
             print(f"{selected_indicator} {i + 1}. {option}")
         
     def up(self, datas):
-        if self.selected > 0:
-            self.selected -= 1
+        if self._selected > 0:
+            self._selected -= 1
         self.show_menu(datas)
         
     def down(self, datas):
-        if self.selected < len(datas) - 1:
-            self.selected += 1
+        if self._selected < len(datas) - 1:
+            self._selected += 1
         self.show_menu(datas)
         
     def get_selected_choice(self, datas):
-        return datas[self.selected]  
+        return datas[self._selected]  
     
     def get_index_selected_choice(self, datas):
-        return self.selected
+        return self._selected
     
     def play_music(self):
         pygame.mixer.init()

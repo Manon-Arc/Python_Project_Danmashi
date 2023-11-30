@@ -15,7 +15,7 @@ class Warrior(Character):
     @staticmethod    
     def create_default_character(name, template="default") -> Warrior | None:
         if (template=="default"):
-            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=6, defense_value=3, attack_type_value=3, attack_special_value=3, touchable=0, dice=Dice(6))
+            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=4, defense_value=2, attack_type_value=3, attack_special_value=3, touchable=0, dice=Dice(4))
         return None
 
     def __str__(self) -> str:
@@ -27,7 +27,10 @@ class Warrior(Character):
     
     def compute_damages_type(self, roll, target):
         print(f"{self._name} lance le sort Canalisation...\n")
-        self._attack_value += self._attack_type_value
+        if self._attack_value < 7:
+            self._attack_value += self._attack_type_value
+        else:
+            print("Ton attaque a déjà été augmentée, dommage tu perds un tour ^^")
         return 0
     
     def compute_damages_special(self, roll, target):
@@ -36,12 +39,15 @@ class Warrior(Character):
         if randint(1,2) == 1:
             self._current_health -= 5
             blesse = True
+        if self._current_health <= 10:
+            self._current_health += self._max_health / 2
         if self._current_health <= 0.3 * self._max_health:
-            return 1.2 * self._attack_value, blesse
+            return int(round(1.2 * self._attack_value)), blesse
         elif self._current_health <= 0.15 * self._max_health:
-            return 1.3 * self._attack_value, blesse
+            return int(round(1.3 * self._attack_value)), blesse
         else:
             return self._attack_value, blesse
         
     def add_special(self):
-        self.playerMove.append("Colère du Berserkeur")
+        if not "Colère du Berserkeur" in self.playerMove:
+            self.playerMove.append("Colère du Berserkeur")

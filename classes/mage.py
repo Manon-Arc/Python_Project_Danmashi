@@ -14,14 +14,14 @@ class Mage(Character):
     @staticmethod
     def create_default_character(name, template="default") -> Mage | None:
         if (template=="default"):
-            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=4, attack_type_value=3, attack_special_value=4, touchable=0, dice=Dice(6))
+            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=2, attack_type_value=3, attack_special_value=4, touchable=0, dice=Dice(4))
         return None
         
     def __str__(self) -> str:
         return f"Super ! Bienvenue {self._name} le mage 🧙\n"
 
     def compute_damages(self, roll, target):
-        print(f"{self._name} lance l'attaque Boule de feu !")
+        print(f"{self._name} lance l'attaque Boule de feu !\n")
         return super().compute_damages(roll, target)
 
     def compute_damages_type(self, roll, target):
@@ -41,4 +41,5 @@ class Mage(Character):
             return super().compute_wounds(damages, roll) - roll
     
     def add_special(self):
-        self.playerMove.append("Rayon cosmique")
+        if not "Rayon cosmique" in self.playerMove:
+            self.playerMove.append("Rayon cosmique")

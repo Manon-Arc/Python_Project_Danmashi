@@ -88,6 +88,8 @@ class Character:
                 print(f"{target._name} a encaissé l'attaque grâce à Protégo 🛡️")
             elif target.get_classe() == "Assassin":
                 print(f"{target._name} a esquivé l'attaque grâce à son écran de fumée 🛡️")
+            elif target.get_classe() == "Vampire":
+                print(f"{target._name} esquive l'attaque grâce à un battement d'aile 🛡️")
             
     def compute_wounds(self, damages, roll):
         return damages - self._defense_value 
