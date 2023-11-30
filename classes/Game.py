@@ -52,68 +52,67 @@ class Game:
         keyboard.add_hotkey('enter',lambda: self.get_selected_choice(self.playerClasseList))
         keyboard.wait('enter')
         selected_choice = self.get_selected_choice(self.playerClasseList)
-        self.player = self.playerClassAllows[selected_choice](player_name)
-        self.selected = 0
+        self._player = self.playerClassAllows[selected_choice](player_name)
+        self._selected = 0
         print("\n")
-        print(str(self.player))
+        print(str(self._player))
 
     def play_floor(self, floor):
         for monster in floor._monsters:
             print(f"\nUn monstre approche... \nC'est un {monster.get_name()} !")
             print(monster.ascii_design)
-            while monster.is_alive() and self.player.is_alive():
+            while monster.is_alive() and self._player.is_alive():
                 keyboard.clear_all_hotkeys()
-                self.show_menu(self.player.playerMove)
-                keyboard.add_hotkey('up', lambda: self.up(self.player.playerMove))
-                keyboard.add_hotkey('down', lambda: self.down(self.player.playerMove))
-                keyboard.add_hotkey('enter', lambda: self.get_selected_choice(self.player.playerMove))
+                self.show_menu(self._player.playerMove)
+                keyboard.add_hotkey('up', lambda: self.up(self._player.playerMove))
+                keyboard.add_hotkey('down', lambda: self.down(self._player.playerMove))
+                keyboard.add_hotkey('enter', lambda: self.get_selected_choice(self._player.playerMove))
                 keyboard.wait('enter')
 
                 print("\n")
-                action = self.get_index_selected_choice(self.player.playerMove)
+                action = self.get_index_selected_choice(self._player.playerMove)
                 self.process_player_action(action, monster)
 
                 if monster.is_alive():
                     print("\n")
-                    monster.attack(self.player)
+                    monster.attack(self._player)
                 else :
                     print(f"{monster.get_name()} a été vaincu")
                     
-                if self.player._touchable > 0:
-                    self.player._touchable -= 1
+                if self._player._touchable > 0:
+                    self._player._touchable -= 1
                     
                 if monster._touchable > 0:
                     monster._touchable -= 1
                 
-                if self.player.is_alive():   
-                    print(f"\nÉtat actuel de {self.player.get_name()}:")
-                    self.player.show_healthbar()
+                if self._player.is_alive():   
+                    print(f"\nÉtat actuel de {self._player.get_name()}:")
+                    self._player.show_healthbar()
                 
                 if monster.is_alive():
                     print(f"État actuel de {monster.get_name()}:")
                     monster.show_healthbar()
                 
                 print("\n----------------------------------------\n")
-                self._selected = 0
                 
-            if not self.player.is_alive():
+            if not self._player.is_alive():
                 print(pyfiglet.figlet_format("GAME OVER"))
                 print("Vous avez été vaincu...")
-                break
+                exit()
 
         print(f"\nVous avez vaincu tous les monstres de l'étage {floor._level}. Bravo !")
         
         if floor._level == 3:
-            self.player.add_special()
-            print(f"Vous avez débloqué une nouvelle compétence : {self.player.playerMove[len(self.player.playerMove)-1]} !")
+            self._player.add_special()
+            print(f"Vous avez débloqué une nouvelle compétence : {self._player.playerMove[len(self._player.playerMove)-1]} !")
 
     def process_player_action(self, action, monster):
         if action == 0:
-            self.player.attack(monster)
+            self._player.attack(monster)
         elif action == 1:
-            self.player.attack_type(monster)
+            self._player.attack_type(monster)
         elif action == 2:
-            self.player.attack_special(monster)
+            self._player.attack_special(monster)
     
     def show_menu(self, datas):
         for i, option in enumerate(datas):

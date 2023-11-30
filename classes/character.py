@@ -3,7 +3,7 @@ from .dice import Dice
 
 class Character:
 
-    def __init__(self, name:str, classe:str, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice) -> None:
+    def __init__(self, name:str, classe:str, max_health:int, attack_value:int, defense_value:int, attack_type_value:int, attack_special_value:int, touchable:int, dice:Dice) -> None:
         self._name = name
         self._classe = classe
         self._max_health = max_health

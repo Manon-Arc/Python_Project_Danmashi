@@ -14,7 +14,7 @@ class Assassin(Character):
     @staticmethod
     def create_default_character(name, template="default") -> Assassin | None:
         if (template=="default"):
-            return Assassin(name=name, classe="Assassin", max_health=35, attack_value=6, defense_value=1, attack_type_value=10, attack_special_value=0, touchable=0, dice=Dice(4))
+            return Assassin(name=name, classe="Assassin", max_health=40, attack_value=6, defense_value=1, attack_type_value=3, attack_special_value=0, touchable=0, dice=Dice(4))
         return None
         
     def __str__(self) -> str:
@@ -28,7 +28,7 @@ class Assassin(Character):
         type_attack_damages = self._attack_value
         print(f"{self._name} lance {roll} hachettes des ombres !\n")
         for _ in range(2, roll):
-            type_attack_damages += 3
+            type_attack_damages += self._attack_type_value
         return type_attack_damages
     
     def compute_damages_special(self, roll, target):
@@ -44,6 +44,6 @@ class Assassin(Character):
             return super().defense(damages, attacker)
             
     def add_special(self):
-        if not "Ecran de fumée":
+        if not "Ecran de fumée" in self.playerMove:
             self.playerMove.append("Ecran de fumée")
             

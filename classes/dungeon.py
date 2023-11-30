@@ -12,7 +12,6 @@ class Dungeon:
     def generate_floors(self, num_floor):
         for i in range(1, num_floor + 1):
             monsters_info = self.generate_specific_configuration(i)
-            print(monsters_info)
             self._floors.append(Floor(i, monsters_info))
 
     def generate_specific_configuration(self, floor_number):

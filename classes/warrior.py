@@ -39,12 +39,16 @@ class Warrior(Character):
         if randint(1,2) == 1:
             self._current_health -= 5
             blesse = True
+            
         if self._current_health <= 10:
-            self._current_health += self._max_health / 2
+            self._current_health = round(self._max_health * 0.4)
+            
         if self._current_health <= 0.3 * self._max_health:
             return int(round(1.2 * self._attack_value)), blesse
+        
         elif self._current_health <= 0.15 * self._max_health:
             return int(round(1.3 * self._attack_value)), blesse
+        
         else:
             return self._attack_value, blesse
         
