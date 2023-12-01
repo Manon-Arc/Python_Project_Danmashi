@@ -46,4 +46,4 @@ class Assassin(Character):
     def add_special(self):
         if not "Ecran de fumée" in self.playerMove:
             self.playerMove.append("Ecran de fumée")
-            
+    

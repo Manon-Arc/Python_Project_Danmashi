@@ -23,14 +23,14 @@ class Game:
         self._dungeon = Dungeon()
         self._player = None
         self._selected = 0
-        self._nbr_floor = 5
+        self._nbr_floor = 10
 
     def start_game(self):
         self.play_music()
         print("\n"*2)
         print("Bienvenue sur...")
         print(pyfiglet.figlet_format("DANMASHI !!\n"))
-        print("Un jeu d'aventure en CLI !\nPréparez-vous à monter les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
+        print("Un jeu d'aventure en CLI !\nPréparez-vous à monter les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous attendent.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
         self.create_player()
         self._dungeon.generate_floors(self._nbr_floor)
 
@@ -90,14 +90,14 @@ class Game:
                     self._player.show_healthbar()
                 
                 if monster.is_alive():
-                    print(f"État actuel de {monster.get_name()}:")
+                    print(f"\nÉtat actuel de {monster.get_name()}:")
                     monster.show_healthbar()
                 
                 print("\n----------------------------------------\n")
                 
             if not self._player.is_alive():
                 print(pyfiglet.figlet_format("GAME OVER"))
-                print("Vous avez été vaincu...")
+                print("Vous avez été vaincu...\n")
                 exit()
 
         print(f"\nVous avez vaincu tous les monstres de l'étage {floor._level}. Bravo !")
@@ -105,7 +105,10 @@ class Game:
         if floor._level == 3:
             self._player.add_special()
             print(f"Vous avez débloqué une nouvelle compétence : {self._player.playerMove[len(self._player.playerMove)-1]} !")
-
+        if floor._level == 5:
+            self._player.add_pot()
+            print(f"Vous avez récupéré une potion de vie dans votre inventaire !")
+            
     def process_player_action(self, action, monster):
         if action == 0:
             self._player.attack(monster)
@@ -113,6 +116,8 @@ class Game:
             self._player.attack_type(monster)
         elif action == 2:
             self._player.attack_special(monster)
+        elif action == 3:
+            self._player.use_pot()
     
     def show_menu(self, datas):
         for i, option in enumerate(datas):

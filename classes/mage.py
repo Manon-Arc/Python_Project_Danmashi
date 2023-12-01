@@ -14,7 +14,7 @@ class Mage(Character):
     @staticmethod
     def create_default_character(name, template="default") -> Mage | None:
         if (template=="default"):
-            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=2, attack_type_value=3, attack_special_value=4, touchable=0, dice=Dice(4))
+            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=2, attack_type_value=8, attack_special_value=4, touchable=0, dice=Dice(4))
         return None
         
     def __str__(self) -> str:
@@ -32,7 +32,7 @@ class Mage(Character):
     def compute_damages_special(self, roll, target):
         print(f"{self._name} lance le sort Rayon cosmique mais sera blessé par le recul !\n")
         self._current_health -= 5
-        return super().compute_damages_special(roll, target) + self._attack_special_value, False
+        return super().compute_damages_special(roll, target), False
 
     def compute_wounds(self, damages, roll):
         if super().compute_wounds(damages, roll) - roll <= 0:

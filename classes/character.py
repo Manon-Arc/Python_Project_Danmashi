@@ -115,3 +115,14 @@ class Character:
 
     def add_special(self):
         return
+    
+    def add_pot(self):
+        if not "Potion de vie" in self.playerMove:
+            self.playerMove.append("Potion de vie")
+            
+    def use_pot(self):
+        self.regenerate()
+        print(f"{self._name} à récupéré toute sa vie !")
+        if "Potion de vie" in self.playerMove:
+            self.playerMove.remove("Potion de vie")
+            
