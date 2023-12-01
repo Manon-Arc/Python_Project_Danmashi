@@ -97,11 +97,11 @@ Attaque spéciale : **Colère du Berserkeur** <br>
 
 Cloner le repository avec la commande suivante :
 ```bash
-git clone 
+git clone https://github.com/Manon-Arc/Projet_python_Danmashi.git
 ```
 Se rendre dans le dossier :
 ```bash
-cd Danmashi
+cd Projet_python_Danmashi
 ```
 Installer les librairie necéssaires :
 ```python
