@@ -1,6 +1,6 @@
 # Projet python : DANMASHI
 
-par **ARCAS** Manon, **RAFFANEL** Guilhem et **DAUBRESS** Alexy
+par **ARCAS** Manon, **RAFFANEL** Guilhem et **DAUBRESSE** Alexy
 
 I. [Présentation du projet](#i-présentation-du-projet)
 
