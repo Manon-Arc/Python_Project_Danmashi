@@ -9,13 +9,13 @@ class Warrior(Character):
         "Canalisation"
         ]
         
-    def __init__(self, name: str, classe: str, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice) -> None:
-        super().__init__(name, classe, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, dice)
+    def __init__(self, name: str, classe: str, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, count_protect, dice) -> None:
+        super().__init__(name, classe, max_health, attack_value, defense_value, attack_type_value, attack_special_value, touchable, count_protect, dice)
       
     @staticmethod    
     def create_default_character(name, template="default") -> Warrior | None:
         if (template=="default"):
-            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=4, defense_value=2, attack_type_value=4, attack_special_value=3, touchable=0, dice=Dice(4))
+            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=4, defense_value=2, attack_type_value=6, attack_special_value=3, touchable=0, count_protect=0, dice=Dice(4))
         return None
 
     def __str__(self) -> str:
@@ -40,7 +40,7 @@ class Warrior(Character):
             self._current_health = round(self._max_health * 0.3)
            
         if randint(1,2) == 1:
-            self._current_health -= 5
+            self._current_health -= 4
             blesse = True
              
         if self._current_health <= 0.4 * self._max_health:

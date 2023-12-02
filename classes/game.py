@@ -80,10 +80,14 @@ class Game:
                     print(f"{monster.get_name()} a été vaincu")
                     
                 if self._player._touchable > 0:
-                    self._player._touchable -= 1
-                    
+                    self._player._touchable -= 1   
                 if monster._touchable > 0:
                     monster._touchable -= 1
+                    
+                if self._player._count_protect > 0:
+                    self._player._count_protect -= 1
+                if monster._count_protect > 0:
+                    monster._count_protect -= 1
                 
                 if self._player.is_alive():   
                     print(f"\nÉtat actuel de {self._player.get_name()}:")
@@ -123,6 +127,7 @@ class Game:
         for i, option in enumerate(datas):
             selected_indicator = ">" if self._selected == i else " "
             print(f"{selected_indicator} {i + 1}. {option}")
+        print("\n")
         
     def up(self, datas):
         if self._selected > 0:

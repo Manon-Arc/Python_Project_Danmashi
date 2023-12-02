@@ -39,7 +39,7 @@ Débloquez de nouvelles compétences et récupérez des objets pour surmonter le
 
 - Choix des attaques grâce aux touches directionnelles.
 
-- Débloquage d'une nouvelle compétence si victoire à l'étage 3
+- Débloquage d'une nouvelle compétence si victoire à l'étage 3.
 
 - Récupération d'une potion de vie si victoire contre le boss à l'étage 5.
 
