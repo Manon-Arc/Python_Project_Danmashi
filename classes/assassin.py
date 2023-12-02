@@ -35,7 +35,7 @@ class Assassin(Character):
         if self._count_protect == 0:
             print(f"{self._name} utilise son écran de fumée 😶‍🌫️ qui rend confus {target.get_name()}\n")
             self._touchable += 2
-            self._count_protect += 4
+            self._count_protect += 3
         else:
             print(f"{self._name} ne peut utiliser son écran de fumée que dans {self._count_protect} tours... dommage ")
         return 0, False

@@ -15,7 +15,7 @@ class Warrior(Character):
     @staticmethod    
     def create_default_character(name, template="default") -> Warrior | None:
         if (template=="default"):
-            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=4, defense_value=2, attack_type_value=6, attack_special_value=3, touchable=0, count_protect=0, dice=Dice(4))
+            return Warrior(name=name, classe="Warrior", max_health=50, attack_value=4, defense_value=2, attack_type_value=3, attack_special_value=4, touchable=0, count_protect=0, dice=Dice(4))
         return None
 
     def __str__(self) -> str:
@@ -36,7 +36,7 @@ class Warrior(Character):
     def compute_damages_special(self, roll, target):
         blesse = False
         print(f"{self._name} déclenche sa Colère du Berserkeur ! au risque d'être blessé...\n")
-        if self._current_health <= 10:
+        if self._current_health <= 5:
             self._current_health = round(self._max_health * 0.3)
            
         if randint(1,2) == 1:

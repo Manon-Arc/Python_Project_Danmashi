@@ -14,7 +14,7 @@ class Mage(Character):
     @staticmethod
     def create_default_character(name, template="default") -> Mage | None:
         if (template=="default"):
-            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=1, attack_type_value=8, attack_special_value=8, touchable=0, count_protect=0, dice=Dice(4))
+            return Mage(name=name, classe="Mage", max_health=50, attack_value=5, defense_value=2, attack_type_value=8, attack_special_value=8, touchable=0, count_protect=0, dice=Dice(4))
         return None
         
     def __str__(self) -> str:

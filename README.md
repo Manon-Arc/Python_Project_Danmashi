@@ -85,7 +85,7 @@ Attaque de base : **Déferlement** <br>
 
 Attaque de type : **Canalisation** <br>
 
-*Description* : se canalise pour augmenter sa puissance d'attaque (*! ne peut être utilisé qu'une fois sinon perd son tour !*).
+*Description* : se canalise pour augmenter sa puissance d'attaque (*! ne peut être utilisé qu'une fois par étage sinon perd son tour !*).
 
 Attaque spéciale : **Colère du Berserkeur** <br>
 
