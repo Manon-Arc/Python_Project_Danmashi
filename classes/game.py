@@ -26,7 +26,7 @@ class Game:
         self._nbr_floor = 10
 
     def start_game(self):
-        self.play_music()
+        # self.play_music()
         print("\n"*2)
         print("Bienvenue sur...")
         print(pyfiglet.figlet_format("DANMASHI !!\n"))

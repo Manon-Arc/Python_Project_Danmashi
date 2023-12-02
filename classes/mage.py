@@ -30,12 +30,12 @@ class Mage(Character):
             self._touchable += 2
             self._count_protect += 3
         else:
-            print(f"{self._name} ne peut utiliser protégo que tous les 3 tours... dommage")
+            print(f"{self._name} ne peut utiliser protégo que dans {self._count_protect} tours... dommage")
         return 0
     
     def compute_damages_special(self, roll, target):
-        print(f"{self._name} lance le sort Rayon cosmique mais sera blessé par le recul !\n")
-        self._current_health -= 4
+        print(f"{self._name} lance le sort Rayon cosmique mais se prend 3 dégats de recul !\n")
+        self._current_health -= 3
         return super().compute_damages_special(roll, target), False
 
     def compute_wounds(self, damages, roll):

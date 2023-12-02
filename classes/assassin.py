@@ -37,7 +37,7 @@ class Assassin(Character):
             self._touchable += 2
             self._count_protect += 4
         else:
-            print(f"{self._name} ne peut utiliser son écran de fumée que tous les 3 tours... dommage ")
+            print(f"{self._name} ne peut utiliser son écran de fumée que dans {self._count_protect} tours... dommage ")
         return 0, False
     
     def defense(self, damages, attacker):
