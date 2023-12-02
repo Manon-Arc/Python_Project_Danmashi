@@ -40,7 +40,7 @@ class Warrior(Character):
             self._current_health = round(self._max_health * 0.3)
            
         if randint(1,2) == 1:
-            self._current_health -= 4
+            self._current_health -= 3
             blesse = True
              
         if self._current_health <= 0.4 * self._max_health:
@@ -55,3 +55,7 @@ class Warrior(Character):
     def add_special(self):
         if not "Colère du Berserkeur" in self.playerMove:
             self.playerMove.append("Colère du Berserkeur")
+    
+    def res_char(self):
+        self._attack_value = 4
+        return super().res_char()

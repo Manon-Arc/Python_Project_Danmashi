@@ -20,7 +20,7 @@ ___
 ## I. Présentation du projet :
 
 **Dansmashi** est un jeu d'aventure en CLI !<br>
-Vous incarnez un joueur appartenant à une classe de votre choix (mage, guerrier ou assassin) dont le but est de sortir victorieux d'un donjon de 10 étages pleins de monstres. <br>
+Vous incarnez un joueur appartenant à une classe de votre choix (mage, guerrier ou assassin) dont le but est de sortir victorieux d'un donjon de 10 étages remplis de monstres. <br>
 
 Chaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.<br>
 Débloquez de nouvelles compétences et récupérez des objets pour surmonter les épreuves.
@@ -29,7 +29,7 @@ Débloquez de nouvelles compétences et récupérez des objets pour surmonter le
 
 - Choix du pseudo du personnage ("player" par défault).
 
-- Choix de la classe du personnage parmis : Mage, Assassin et Guerrier.
+- Choix de la classe du personnage parmi : Mage, Assassin et Guerrier.
 
 - Musique de fond durant le jeu.
 
@@ -37,11 +37,11 @@ Débloquez de nouvelles compétences et récupérez des objets pour surmonter le
 
 - ASCII art pour améliorer l'immersion du joueur.
 
-- Choix des attaques grâce aux touches directionnelles.
+- Choix des actions à l'aide des touches directionnelles.
 
 - Débloquage d'une nouvelle compétence si victoire à l'étage 3.
 
-- Récupération d'une potion de vie si victoire contre le boss à l'étage 5.
+- Récupération d'une potion de vie (vie remis au maximum) si victoire contre le boss à l'étage 5.
 
 ## III. Classes :
 
@@ -53,7 +53,7 @@ Attaque de base : ***Boule de feu*** <br>
 
 Attaque de type : ***Protego*** <br>
 
-*Description* : crée un bouclier de protection le rendant invulnérable durant 2 tours.
+*Description* : crée un bouclier de protection le rendant invulnérable durant 2 tours (*! réinitialisé à chaque changement d'étage si actif !*).
 
 Attaque spéciale : ***Rayon cosmique*** <br>
 
@@ -73,7 +73,7 @@ Attaque de type : **Hachettes des ombres** <br>
 
 Attaque spéciale : **Ecran de fumée** <br>
 
-*Description* : lance un fumigène et rend confus son adversaire lui empêchant de bien viser pendant 2 tours.
+*Description* : lance un fumigène et rend confus son adversaire lui empêchant de bien viser pendant 2 tours (*! réinitialisé à chaque changement d'étage si actif !*).
 
 ___
 
@@ -89,7 +89,7 @@ Attaque de type : **Canalisation** <br>
 
 Attaque spéciale : **Colère du Berserkeur** <br>
 
-*Description* : déclenche sa colère du Berserkeur au risque d'être blessé (1 chance sur 2). <br> Récupère une vie de 15 si sa vie actuelle est inférieure à 10 hp, puis lance une quantité de dégâts dépendante de ses points de vie.
+*Description* : déclenche sa colère du Berserkeur au risque d'être blessé (1 chance sur 2). <br> Récupère une vie de 15 hp si sa vie actuelle est inférieure à 5 hp, puis lance une quantité de dégâts dépendante de ses points de vie.
 
 ## IV. Comment installer le projet :
 

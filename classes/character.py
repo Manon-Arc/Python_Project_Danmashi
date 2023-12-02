@@ -113,6 +113,11 @@ class Character:
 
     def regenerate(self):
         self._current_health = self._max_health
+        
+    def res_char(self):
+        self._touchable = 0
+        self._count_protect = 0
+        return
 
     def add_special(self):
         return

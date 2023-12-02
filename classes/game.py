@@ -26,16 +26,17 @@ class Game:
         self._nbr_floor = 10
 
     def start_game(self):
-        # self.play_music()
+        self.play_music()
         print("\n"*2)
         print("Bienvenue sur...")
         print(pyfiglet.figlet_format("DANMASHI !!\n"))
-        print("Un jeu d'aventure en CLI !\nPréparez-vous à monter les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences pour surmonter les épreuves qui vous attendent.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
+        print("Un jeu d'aventure en CLI !\nPréparez-vous à monter les étages d'un donjon plein de monstres.\nChaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.\nDébloquez de nouvelles compétences et récupérez des objets pour surmonter les épreuves qui vous attendent.\nOserez-vous affronter les mystères du donjon et ressortir victorieux de DANMASHI ?\nC'est le moment de tester votre courage !\n")
         self.create_player()
         self._dungeon.generate_floors(self._nbr_floor)
 
         for i, floor in enumerate(self._dungeon._floors):
-            print(pyfiglet.figlet_format(f"\n=== Etage {i + 1} ==="))
+            print(pyfiglet.figlet_format(f"=== Etage {i + 1} ==="))
+            self._player.res_char()
             self.play_floor(floor)
 
         print(pyfiglet.figlet_format("Felicitations !"))    
@@ -63,6 +64,7 @@ class Game:
             print(monster.ascii_design)
             while monster.is_alive() and self._player.is_alive():
                 keyboard.clear_all_hotkeys()
+                print("Que veux-tu faire ?")
                 self.show_menu(self._player.playerMove)
                 keyboard.add_hotkey('up', lambda: self.up(self._player.playerMove))
                 keyboard.add_hotkey('down', lambda: self.down(self._player.playerMove))
@@ -96,6 +98,8 @@ class Game:
                 if monster.is_alive():
                     print(f"\nÉtat actuel de {monster.get_name()}:")
                     monster.show_healthbar()
+                    
+                self._selected = 0
                 
                 print("\n----------------------------------------\n")
                 
@@ -147,7 +151,7 @@ class Game:
     
     def play_music(self):
         pygame.mixer.init()
-        pygame.mixer.music.load("twilite.mp3")
+        pygame.mixer.music.load("music.mp3")
         pygame.mixer.music.play()
         if keyboard.is_pressed('s'):
             pygame.mixer.music.stop()
