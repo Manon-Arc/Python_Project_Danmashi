@@ -1,6 +1,6 @@
 # Projet python : DANMASHI
 
-par **ARCAS** Manon, **RAFFANEL** Guilhem et **DAUBRESSE** Alexy
+par **ARCAS** Manon, **RAFFANEL** Guilhem et **DAUBRESSE** Alexy (*groupe 7*)
 
 I. [Présentation du projet](#i-présentation-du-projet)
 
@@ -41,29 +41,29 @@ Débloquez de nouvelles compétences et récupérez des objets pour surmonter le
 
 - Débloquage d'une nouvelle compétence si victoire à l'étage 3.
 
-- Récupération d'une potion de vie (vie remis au maximum) si victoire contre le boss à l'étage 5.
+- Récupération d'une potion de vie (vie remise au maximum) si victoire contre le boss à l'étage 5.
 
 ## III. Classes :
 
 ### 1. Mage :
 
-Attaque de base : ***Boule de feu*** <br>
+Attaque de base : **Boule de feu** <br>
 
 *Description* : lance une boule de feu sur son adversaire.
 
-Attaque de type : ***Protego*** <br>
+Attaque de type : **Protego** <br>
 
-*Description* : crée un bouclier de protection le rendant invulnérable durant 2 tours (*! réinitialisé à chaque changement d'étage si actif !*).
+*Description* : crée un bouclier de protection le rendant invulnérable durant 2 tours (*! réinitialisée à chaque changement d'étage si actif !*).
 
-Attaque spéciale : ***Rayon cosmique*** <br>
+Attaque spéciale : **Rayon cosmique** <br>
 
-*Description* : lance un rayon dévastateur qui fait plus de dégâts qu'une attaque de base mais reçoit des dégâts de recul.
+*Description* : lance un rayon dévastateur qui inflige plus de dégâts qu'une attaque de base mais reçoit des dégâts de recul.
 
 ___
 
 ### 2. Assassin :
 
-Attaque de base : ***Coup de dagues*** <br>
+Attaque de base : **Coup de dague** <br>
 
 *Description* : donne un coup de dague à son adversaire.
 
@@ -73,7 +73,7 @@ Attaque de type : **Hachettes des ombres** <br>
 
 Attaque spéciale : **Ecran de fumée** <br>
 
-*Description* : lance un fumigène et rend confus son adversaire lui empêchant de bien viser pendant 2 tours (*! réinitialisé à chaque changement d'étage si actif !*).
+*Description* : lance un fumigène et rend confus son adversaire lui empêchant de bien viser pendant 2 tours (*! réinitialisée à chaque changement d'étage si actif !*).
 
 ___
 
@@ -81,11 +81,11 @@ ___
 
 Attaque de base : **Déferlement** <br>
 
-*Description* : déclanche un enchaînement d'attaque vives sur son adversaire.
+*Description* : déclanche un enchaînement d'attaques vives sur sa cible.
 
 Attaque de type : **Canalisation** <br>
 
-*Description* : se canalise pour augmenter sa puissance d'attaque (*! ne peut être utilisé qu'une fois par étage sinon perd son tour !*).
+*Description* : se canalise pour augmenter sa puissance d'attaque (*! ne peut être utilisée qu'une fois par étage sinon perd son tour !*).
 
 Attaque spéciale : **Colère du Berserkeur** <br>
 
@@ -95,7 +95,7 @@ Attaque spéciale : **Colère du Berserkeur** <br>
 
 ### 1. Installation :
 
-Cloner le repository avec la commande suivante :
+Cloner le repo avec la commande suivante :
 ```bash
 git clone https://github.com/Manon-Arc/Projet_python_Danmashi.git
 ```
