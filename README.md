@@ -1,6 +1,6 @@
 # Projet python : DANMASHI
 
-par **ARCAS** Manon
+par **ARCAS** Manon <br>
 I. [Présentation du projet](#i-présentation-du-projet)
 
 II. [Fonctionnalités](#ii-fonctionnalités-disponibles)
