@@ -1,7 +1,8 @@
 # Projet python : DANMASHI
 
-par **ARCAS** Manon, **RAFFANEL** Guilhem et **DAUBRESSE** Alexy (*groupe 7*)
+par **ARCAS** Manon <br>
 
+___
 I. [Présentation du projet](#i-présentation-du-projet)
 
 II. [Fonctionnalités](#ii-fonctionnalités-disponibles)
