@@ -102,7 +102,7 @@ class Character:
     def defense(self, damages, attacker):
         roll = self._dice.roll()
         wounds = self.compute_wounds(damages, roll)
-        print(f"🛡️ {self._name} à pris {wounds} dégâts de l'attaque de {attacker.get_name()} grâce à sa défense !")
+        print(f"🛡️ {self._name} a prit {wounds} dégâts de l'attaque de {attacker.get_name()} grâce à sa défense !")
         self.decrease_health(wounds)
         
     def decrease_health(self, amount):
