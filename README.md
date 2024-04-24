@@ -6,22 +6,22 @@ ___
 
 ℹ️ **Warning**: This game is in French!
 
-I. [Project Overview](#i-project-overview)
+I. [Project Overview](#📖-i-project-overview)
 
-II. [Features](#ii-available-features)
+II. [Features](#🔧-ii-available-features)
 
-III. [Classes](#iii-classes)
-   1. [Mage](#1-mage)
-   2. [Assassin](#2-assassin)
-   3. [Warrior](#3-warrior)
+III. [Classes](#📚-iii-classes)
+   1. [Mage](#🧙-1-mage)
+   2. [Assassin](#🔪-2-assassin)
+   3. [Warrior](#⚔️-3-warrior)
 
-IV. [How to Install the Project](#iv-how-to-install-the-project)
-   1. [Installation](#1-installation)
-   2. [Running](#2-running)
+IV. [How to Install the Project](#🛠️-iv-how-to-install-the-project)
+   1. [Installation](#📥-1-installation)
+   2. [Running](#💻-2-running)
 
 ___
 
-## I. Project Overview:
+## 📖 I. Project Overview :
 
 **DANMASHI** is a CLI adventure game!<br>
 You embody a player belonging to a class of your choice (mage, warrior, or assassin) whose goal is to emerge victorious from a dungeon with 10 floors filled with monsters. <br>
@@ -29,7 +29,7 @@ You embody a player belonging to a class of your choice (mage, warrior, or assas
 Each level is an increasingly difficult challenge with vicious creatures to defeat.<br>
 Unlock new skills and collect items to overcome the trials.
 
-## II. Available Features:
+## 🔧 II. Available Features :
 
 - Choice of character's nickname ("player" by default).
 - Choice of character class among: Mage, Assassin, and Warrior.
@@ -40,9 +40,9 @@ Unlock new skills and collect items to overcome the trials.
 - Unlocking a new skill if victory on floor 3.
 - Recovery of a life potion (life restored to maximum) if victory against the boss on floor 5.
 
-## III. Classes:
+## 📚 III. Classes :
 
-### 1. Mage:
+### 🧙 1. Mage :
 
 - Basic Attack: **Fireball** <br>
   *Description*: throws a fireball at the opponent.
@@ -53,7 +53,7 @@ Unlock new skills and collect items to overcome the trials.
 - Special Attack: **Cosmic Ray** <br>
   *Description*: unleashes a devastating ray that inflicts more damage than a basic attack but receives recoil damage.
 
-### 2. Assassin:
+### 🔪 2. Assassin :
 
 - Basic Attack: **Dagger Strike** <br>
   *Description*: strikes the opponent with a dagger.
@@ -64,7 +64,7 @@ Unlock new skills and collect items to overcome the trials.
 - Special Attack: **Smoke Screen** <br>
   *Description*: throws a smoke bomb and confuses the opponent, preventing accurate aiming for 2 turns (*! reset at each floor change if active !*).
 
-### 3. Warrior:
+### ⚔️ 3. Warrior :
 
 - Basic Attack: **Rampage** <br>
   *Description*: unleashes a flurry of swift attacks on the target.
@@ -75,10 +75,29 @@ Unlock new skills and collect items to overcome the trials.
 - Special Attack: **Berserker's Wrath** <br>
   *Description*: triggers the berserker's wrath at the risk of being injured (1 in 2 chance). <br> Recovers 15 hp if current life is less than 5 hp, then deals damage dependent on remaining hit points.
 
-## IV. How to Install the Project:
+## 🛠️ IV. How to Install the Project :
 
-### 1. Installation:
+### 📥 1. Installation :
 
-Clone the repo using the following command:
+Clone the repo using the following command :
 ```bash
-git clone https://github.com/Manon-Arc/Projet_python_Danmashi.git
+git clone https://github.com/Manon-Arc/Python_Project_Danmashi.git
+```
+
+Navigate to the directory :
+```bash
+cd Python_Project_Danmashi
+```
+Install the necessary libraries :
+```python
+pip install -r requirement.txt
+```
+
+### 💻 2. Running :
+
+Execute the following command :
+```python
+python .\engine.py
+```
+
+😉 Enjoy !
