@@ -1,119 +1,84 @@
-# Projet python : DANMASHI
+# Python Project: DANMASHI
 
-par **ARCAS** Manon <br>
+by **ARCAS** Manon <br>
 
 ___
-I. [Présentation du projet](#i-présentation-du-projet)
 
-II. [Fonctionnalités](#ii-fonctionnalités-disponibles)
+ℹ️ **Warning**: This game is in French!
+
+I. [Project Overview](#i-project-overview)
+
+II. [Features](#ii-available-features)
 
 III. [Classes](#iii-classes)
-1. [Mage](#1-mage)
-2. [Assassin](#2-assassin)
-1. [Guerrier](#3-guerrier)
+   1. [Mage](#1-mage)
+   2. [Assassin](#2-assassin)
+   3. [Warrior](#3-warrior)
 
-IV. [Comment installer le projet](#iv-comment-installer-le-projet)
-1. [Installation](#1-installation)
-2. [Démarrage](#2-lancement)
-
-___
-
-## I. Présentation du projet :
-
-**Dansmashi** est un jeu d'aventure en CLI !<br>
-Vous incarnez un joueur appartenant à une classe de votre choix (mage, guerrier ou assassin) dont le but est de sortir victorieux d'un donjon de 10 étages remplis de monstres. <br>
-
-Chaque niveau est un défi de plus en plus difficile avec des créatures vicieuses à vaincre.<br>
-Débloquez de nouvelles compétences et récupérez des objets pour surmonter les épreuves.
-
-## II. Fonctionnalités disponibles :
-
-- Choix du pseudo du personnage ("player" par défault).
-
-- Choix de la classe du personnage parmi : Mage, Assassin et Guerrier.
-
-- Musique de fond durant le jeu.
-
-- Génération aléatoire de 1 à 2 monstres par étage parmi des listes de difficultés différentes afin de varier l'expérience utilisateur (*6 monstres disponibles*).
-
-- ASCII art pour améliorer l'immersion du joueur.
-
-- Choix des actions à l'aide des touches directionnelles.
-
-- Débloquage d'une nouvelle compétence si victoire à l'étage 3.
-
-- Récupération d'une potion de vie (vie remise au maximum) si victoire contre le boss à l'étage 5.
-
-## III. Classes :
-
-### 1. Mage :
-
-Attaque de base : **Boule de feu** <br>
-
-*Description* : lance une boule de feu sur son adversaire.
-
-Attaque de type : **Protego** <br>
-
-*Description* : crée un bouclier de protection le rendant invulnérable durant 2 tours (*! réinitialisée à chaque changement d'étage si actif !*).
-
-Attaque spéciale : **Rayon cosmique** <br>
-
-*Description* : lance un rayon dévastateur qui inflige plus de dégâts qu'une attaque de base mais reçoit des dégâts de recul.
+IV. [How to Install the Project](#iv-how-to-install-the-project)
+   1. [Installation](#1-installation)
+   2. [Running](#2-running)
 
 ___
 
-### 2. Assassin :
+## I. Project Overview:
 
-Attaque de base : **Coup de dague** <br>
+**DANMASHI** is a CLI adventure game!<br>
+You embody a player belonging to a class of your choice (mage, warrior, or assassin) whose goal is to emerge victorious from a dungeon with 10 floors filled with monsters. <br>
 
-*Description* : donne un coup de dague à son adversaire.
+Each level is an increasingly difficult challenge with vicious creatures to defeat.<br>
+Unlock new skills and collect items to overcome the trials.
 
-Attaque de type : **Hachettes des ombres** <br>
+## II. Available Features:
 
-*Description* : lance entre 2 et 4 hachettes sur son adversaire (dégâts variables).
+- Choice of character's nickname ("player" by default).
+- Choice of character class among: Mage, Assassin, and Warrior.
+- Background music during the game.
+- Random generation of 1 to 2 monsters per floor from different difficulty lists to vary the user experience (*6 available monsters*).
+- ASCII art to enhance player immersion.
+- Action selection using directional keys.
+- Unlocking a new skill if victory on floor 3.
+- Recovery of a life potion (life restored to maximum) if victory against the boss on floor 5.
 
-Attaque spéciale : **Ecran de fumée** <br>
+## III. Classes:
 
-*Description* : lance un fumigène et rend confus son adversaire lui empêchant de bien viser pendant 2 tours (*! réinitialisée à chaque changement d'étage si actif !*).
+### 1. Mage:
 
-___
+- Basic Attack: **Fireball** <br>
+  *Description*: throws a fireball at the opponent.
+  
+- Type Attack: **Protego** <br>
+  *Description*: creates a protective shield making it invulnerable for 2 turns (*! reset at each floor change if active !*).
+  
+- Special Attack: **Cosmic Ray** <br>
+  *Description*: unleashes a devastating ray that inflicts more damage than a basic attack but receives recoil damage.
 
-### 3. Guerrier :
+### 2. Assassin:
 
-Attaque de base : **Déferlement** <br>
+- Basic Attack: **Dagger Strike** <br>
+  *Description*: strikes the opponent with a dagger.
+  
+- Type Attack: **Shadow Axes** <br>
+  *Description*: throws between 2 and 4 axes at the opponent (variable damage).
+  
+- Special Attack: **Smoke Screen** <br>
+  *Description*: throws a smoke bomb and confuses the opponent, preventing accurate aiming for 2 turns (*! reset at each floor change if active !*).
 
-*Description* : déclanche un enchaînement d'attaques vives sur sa cible.
+### 3. Warrior:
 
-Attaque de type : **Canalisation** <br>
+- Basic Attack: **Rampage** <br>
+  *Description*: unleashes a flurry of swift attacks on the target.
+  
+- Type Attack: **Channeling** <br>
+  *Description*: channels to increase attack power (*! can only be used once per floor otherwise loses turn !*).
+  
+- Special Attack: **Berserker's Wrath** <br>
+  *Description*: triggers the berserker's wrath at the risk of being injured (1 in 2 chance). <br> Recovers 15 hp if current life is less than 5 hp, then deals damage dependent on remaining hit points.
 
-*Description* : se canalise pour augmenter sa puissance d'attaque (*! ne peut être utilisée qu'une fois par étage sinon perd son tour !*).
+## IV. How to Install the Project:
 
-Attaque spéciale : **Colère du Berserkeur** <br>
+### 1. Installation:
 
-*Description* : déclenche sa colère du Berserkeur au risque d'être blessé (1 chance sur 2). <br> Récupère une vie de 15 hp si sa vie actuelle est inférieure à 5 hp, puis lance une quantité de dégâts dépendante de ses points de vie.
-
-## IV. Comment installer le projet :
-
-### 1. Installation :
-
-Cloner le repo avec la commande suivante :
+Clone the repo using the following command:
 ```bash
 git clone https://github.com/Manon-Arc/Projet_python_Danmashi.git
-```
-Se rendre dans le dossier :
-```bash
-cd Projet_python_Danmashi
-```
-Installer les librairie necéssaires :
-```python
-pip install -r requirement.txt
-```
-
-### 2. Lancement :
-
-Exécuter la commande suivante :
-```python
-python .\engine.py
-```
-
-😉 Enjoy !
